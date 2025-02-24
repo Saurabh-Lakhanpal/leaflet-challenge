@@ -6,6 +6,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
+// Add zoom control position.
+L.control.zoom({
+    position: 'topright'
+}).addTo(map);
+
 // Fetch earthquake data from the USGS GeoJSON Feed.
 const earthquakeUrl = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson';
 
