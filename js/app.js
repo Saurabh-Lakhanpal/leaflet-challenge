@@ -6,11 +6,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
-// Add zoom control position.
-L.control.zoom({
-    position: 'topright'
-}).addTo(map);
-
 // Fetch earthquake data from the USGS GeoJSON Feed.
 const earthquakeUrl = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson';
 
@@ -81,6 +76,9 @@ legend.onAdd = function (map) {
     const div = L.DomUtil.create('div', 'info legend'),
         depths = [0, 10, 30, 50, 70, 90],
         labels = [];
+
+    // Add title to the legend.
+    div.innerHTML += '<p>Size = Intensity</br>Color = Depth in Km</p>';
 
     // Loop through depth intervals and generate a label with a colored square for each interval.
     for (let i = 0; i < depths.length; i++) {
