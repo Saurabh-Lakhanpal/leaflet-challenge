@@ -1,6 +1,9 @@
 # Leaflet Challenge
 Develope a way to visualize USGS earthquake data that will allow for a way to educate the public and other government organizations. The USGS collect a massive amount of data from all over the world each day. The United States Geological Survey (USGS) is responsible for providing scientific data about natural hazards, the health of our ecosystems and environment, and the impacts of climate and land-use change. The value delivered is the methods and tools to supply timely, relevant, and useful information about the Earth and its processes.
 
+## Solution
+[Click Here](https://saurabh-lakhanpal.github.io/leaflet-challenge/)
+
 ## Instructions
 ### Part 1: Create the Earthquake Visualization
 1. **Get the dataset:** 
@@ -14,7 +17,6 @@ Develope a way to visualize USGS earthquake data that will allow for a way to ed
 
 ### Part 2: Gather and Plot More Data 
 1. Plot a second dataset on your map to illustrate the relationship between tectonic plates and seismic activity. Pull in this dataset and visualize it alongside the original data. Data on tectonic plates can be found at [GitHub Tectonic Plates](https://github.com/fraxen/tectonicplates).
-
 2. **Perform the following tasks:**
     - Plot the tectonic plates dataset on the map in addition to the earthquakes.
     - Add other base maps to choose from.
