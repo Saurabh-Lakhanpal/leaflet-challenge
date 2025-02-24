@@ -2,7 +2,7 @@
 Develope a way to visualize USGS earthquake data that will allow for a way to educate the public and other government organizations. The USGS collect a massive amount of data from all over the world each day. The United States Geological Survey (USGS) is responsible for providing scientific data about natural hazards, the health of our ecosystems and environment, and the impacts of climate and land-use change. The value delivered is the methods and tools to supply timely, relevant, and useful information about the Earth and its processes.
 
 ## Solution
-[Click Here]((https://saurabh-lakhanpal.github.io/leaflet-challenge/)
+[Click Here](https://saurabh-lakhanpal.github.io/leaflet-challenge/)
 
 ## Instructions
 ### Part 1: Create the Earthquake Visualization
