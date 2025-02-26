@@ -6,14 +6,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
-// Fetch earthquake data from the USGS GeoJSON Feed.
+// Fetch earthquake data using d3.json() with .then()
 const earthquakeUrl = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson';
 
-fetch(earthquakeUrl)
-    .then(response => response.json())
-    .then(data => {
-        // Add earthquake data to the map.
-        const earthquakes = L.geoJson(data, {
+d3.json(earthquakeUrl).then(earthquakeData => {
+    if (earthquakeData) {
+        const earthquakes = L.geoJson(earthquakeData, {
             pointToLayer: (feature, latlng) => {
                 return L.circleMarker(latlng, {
                     radius: feature.properties.mag * 4,
@@ -29,13 +27,11 @@ fetch(earthquakeUrl)
             }
         }).addTo(map);
 
-        // Fetch tectonic plates data.
+        // Fetch tectonic plates data using d3.json() with .then()
         const platesUrl = 'https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json';
 
-        fetch(platesUrl)
-            .then(response => response.json())
-            .then(platesData => {
-                // Add tectonic plates data to the map.
+        d3.json(platesUrl).then(platesData => {
+            if (platesData) {
                 const plates = L.geoJson(platesData, {
                     style: {
                         color: '#ff7800',
@@ -43,7 +39,7 @@ fetch(earthquakeUrl)
                     }
                 }).addTo(map);
 
-                // Add layer controls to the map.
+                // Add layer controls to the map
                 const baseMaps = {
                     "Street Map": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 })
                 };
@@ -56,10 +52,12 @@ fetch(earthquakeUrl)
                 L.control.layers(baseMaps, overlayMaps, {
                     collapsed: false
                 }).addTo(map);
-            });
-    });
+            }
+        });
+    }
+});
 
-// Function to get color based on depth.
+// Function to get color based on depth
 function getDepthColor(depth) {
     return depth > 90 ? '#d73027' :
            depth > 70 ? '#fc8d59' :
@@ -69,7 +67,7 @@ function getDepthColor(depth) {
                         '#1a9850';
 }
 
-// Add legend to the map.
+// Add legend to the map
 const legend = L.control({ position: 'bottomright' });
 
 legend.onAdd = function (map) {
@@ -77,10 +75,10 @@ legend.onAdd = function (map) {
         depths = [0, 10, 30, 50, 70, 90],
         labels = [];
 
-    // Add title to the legend.
+    // Add title to the legend
     div.innerHTML += '<p>Size = Intensity</br>Color = Depth in Km</p>';
 
-    // Loop through depth intervals and generate a label with a colored square for each interval.
+    // Loop through depth intervals and generate a label with a colored square for each interval
     for (let i = 0; i < depths.length; i++) {
         div.innerHTML +=
             '<i style="background:' + getDepthColor(depths[i] + 1) + '"></i> ' +
